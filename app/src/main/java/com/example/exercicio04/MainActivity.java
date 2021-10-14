@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         ProcessarTask task = new ProcessarTask(btnIniciar, txtCount);
         if(view.getId() == R.id.btnIniciar){
-            task.execute(0);
+            task.execute();
 
         }
     }

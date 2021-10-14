@@ -9,6 +9,7 @@ public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
 
     private Button btnIniciar;
     private TextView txtCount;
+    private Integer count = 10;
 
 
     public ProcessarTask(Button btnIniciar, TextView txtCount){
@@ -27,27 +28,22 @@ public class ProcessarTask extends AsyncTask<Integer, Integer, Void> {
     @Override
     protected void onPostExecute(Void unused) {
         btnIniciar.setEnabled(true);
-        SystemClock.sleep(2500);
+
     }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
-        int min = values[0];
+        txtCount.setText(count.toString());
+        count--;
 
-        for (int i = 10; i >= 0; i--){
-            SystemClock.sleep(1000);
-            String count = String.valueOf(i);
-            txtCount.setText(count);
-        }
     }
 
     @Override
     protected Void doInBackground(Integer... integers) {
-        int min = integers[0];
 
-        for(int i = 10; i >= min; i--){
-            SystemClock.sleep(1000);
+        for(int i = 10; i >= 0; i--){
             publishProgress(i);
+            SystemClock.sleep(1000);
         }
         return null;
     }
